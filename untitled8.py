@@ -1,7 +1,8 @@
 #hi uwu
 import random
 #NT: defining where the snakes and ladder are on, and where they will take the players afterwards
-snakes = {
+
+#I.R: snakes = {
     8: 4,
     18: 1,
     26: 10,
@@ -28,4 +29,6 @@ ladders = {
 }
 
 players_position = []
+
+player_turn  = random.randint(1,6)
 
