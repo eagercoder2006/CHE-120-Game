@@ -86,8 +86,10 @@ def get_player_names():
 players_position = []
 
 #I.R: The dice roll
-player_turn  = random.randint(1,6)
-if player_turn = 6:
+def player_turn():
+    dice_roll= random.randint(1,6)
+    print ("You got a " + str(dice_roll))
+    return dice_roll
     
 player_position+= player_turn
 
