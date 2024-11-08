@@ -1,6 +1,6 @@
 #hi uwu
 import random
-
+#NT: defining where the snakes and ladder are on, and where they will take the players afterwards
 snakes = {
     8: 4,
     18: 1,
