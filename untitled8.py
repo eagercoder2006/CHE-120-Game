@@ -54,8 +54,12 @@ def welcome_msg():
     print(msg)
 
 #COMMENTS
+
+#I.R: This function will take user input for the names of the players. 
 def get_player_names():
+#This line says that the variable player1_name initially does not have a value, as it will get filled when the user inputs a name. 
     player1_name = None
+ #This loop will keep asking for a player name until a non-empty string is entered by the user.  
     while not player1_name:
         player1_name = input("Please enter a valid name for first player: ").strip()
 
