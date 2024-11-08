@@ -35,6 +35,7 @@ ladders = {
 players_position = []
 
 player_turn  = random.randint(1,6)
-
+if player_turn = 6:
+    
 player_position+= player_turn
 
