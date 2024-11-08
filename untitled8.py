@@ -96,11 +96,15 @@ def player_turn():
 def check_for_a_winner(player_name, position):
     if position== board_size:
         print ("Hooray!" + str (player_name) + "  has won the game!")
-        
-#I.R: This tells the player whether to move up or down depending on if they landed on a snake or on a ladder.
-if position in snakes:
-        print(f"{player} encountered {'a ladder' if position < board[position] else 'a snake'}!")
 
+def moving_positions(current_value, dice_roll):
+    old_value = current_value
+    current_value += dice_roll
+#I.R: This tells the player whether to move up or down depending on if they landed on a snake or on a ladder.
+    if position in snakes:
+        print(f"{player} encountered {'a ladder' if position < board[position] else 'a snake'}!")
+      
+        
 def start_game():
     welcome_msg()
     player1_name, player2_name,player3_name,player4_name = get_player_names()
