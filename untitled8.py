@@ -85,9 +85,6 @@ def get_player_names():
     return player1_name, player2_name, player3_name, player4_name
 
 
-
-players_position = []
-
 #I.R: The dice roll
 def player_turn():
     dice_roll= random.randint(1,6)
