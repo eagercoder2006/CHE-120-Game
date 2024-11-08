@@ -150,7 +150,7 @@ initial_position=tur.pos()
 
 for i in range(10):
     tur.penup()
-    tur.goto(initial_position+(0,size*i))
+    tur.goto(initial_position+(-10,(size*i))-10)
     tur.pendown()
     tur.seth(0)
     for j in range(10):
@@ -158,9 +158,10 @@ for i in range(10):
         tur.fillcolor("orange")
         square(size)
         tur.forward(size)
+        tur.end_fill()
         
 tur.penup()
-tur.goto(initial_position)
+tur.goto(initial_position + (-10,size))
 tur.pendown()
 tur.width(20)
 for l in range(10):
@@ -169,4 +170,4 @@ for l in range(10):
 tur.penup()
 tur.pos()
 
-tur.done() 
+tur.done()
