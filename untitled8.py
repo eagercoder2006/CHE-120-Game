@@ -72,7 +72,10 @@ def get_player_names():
         player4_name = input("Please enter a valid name for second player: ").strip()
 
     print("\nMatch will be played between '" + player1_name + "' and '" + player2_name + "'\n")
-    return player1_name, player2_name, player3_name, player4_name
+     return player1_name, player2_name, player3_name, player4_name
+
+
+
 players_position = []
 
 player_turn  = random.randint(1,6)
