@@ -119,3 +119,42 @@ def start_game():
     player2_current_position = 0
     player3_current_position = 0
     player4_current_position = 0
+
+
+import turtle
+
+scr= turtle.Screen()
+scr.bgcolor("green")
+scr.title("Snakes and ladders board")
+tur=turtle.Turtle()
+
+size=50
+
+def square(x):
+    for i in range(4):
+        tur.forward(x)
+        tur.right(90)
+initial_position=tur.pos()
+
+for i in range(10):
+    tur.penup()
+    tur.goto(initial_position+(0,size*i))
+    tur.pendown()
+    tur.seth(0)
+    for j in range(10):
+        tur.begin_fill()
+        tur.fillcolor("orange")
+        square(size)
+        tur.forward(size)
+        
+tur.penup()
+tur.goto(initial_position)
+tur.pendown()
+tur.width(20)
+for l in range(10):
+    square(size*10)
+
+tur.penup()
+tur.pos()
+
+tur.done() 
