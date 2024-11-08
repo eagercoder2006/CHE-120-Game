@@ -105,6 +105,18 @@ def moving_positions(current_value, dice_roll):
         print ("You must roll the exact number of spaces in order to win.")
         return old_value
 
+    if current_value in snakes:
+        final_position= snakes.get(current_value) 
+#NT: this line and the one below retrieve the position the corresponding snake/ladder is supposed to take the player to
+
+    elif current_value in ladders:
+        final_position=ladders.get(current_value)
+
+    else:
+        final_position=current_value
+
+    return final_position
+
 
 #I.R: This tells the player whether to move up or down depending on if they landed on a snake or on a ladder.
     if current_value in snakes:
