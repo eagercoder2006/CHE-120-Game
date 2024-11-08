@@ -1,4 +1,8 @@
-#hi uwu
+#Israelle Azilinon:
+#Ishita Rajan: I.R
+#Nicole Trinidad: NT
+#Amy Wang: 
+
 #NT: to be used for the dice roll
 import random
 import turtle
@@ -31,12 +35,12 @@ ladders = {
   80: 93,
   83: 95
 }
-#COMMENTS
+#NT: simple print statements that will be used to make the game more interactive
 player_turn_text= [ "It's your turn.", "MOVE!", "Please proceed.", "You ready to win this?", "Let's Go!"]
 snake_bite_text= ["Ouch!", "whomp whomp", "oh no", "did that hurt?", "Slide you later!"]
 ladder_jump= ["Woop woop", "YAY", "Climb up!", "You're closer to the end"]
 
-#COMMENTS
+#NT: just a message that goes over the rules and how to play the game
 def welcome_msg():
     msg = """
     Welcome to Snake and Ladder Game.
@@ -53,7 +57,6 @@ def welcome_msg():
     """
     print(msg)
 
-#COMMENTS
 
 #I.R: This function will take user input for the names of the players. 
 def get_player_names():
@@ -90,7 +93,9 @@ def player_turn():
     dice_roll= random.randint(1,6)
     print ("You got a " + str(dice_roll))
     return dice_roll
-    
+
+#NT: this checks whether a player has reached the end of the game, and since the max player position can be the size of the board
+#NT: this is why we set the position equal to the board size
 def check_for_a_winner(player_name, position):
     if position== board_size:
         print ("Hooray!" + str (player_name) + "  has won the game!")
