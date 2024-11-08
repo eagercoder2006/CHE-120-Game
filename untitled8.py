@@ -57,9 +57,11 @@ def welcome_msg():
 
 #I.R: This function will take user input for the names of the players. 
 def get_player_names():
-#This line says that the variable player1_name initially does not have a value, as it will get filled when the user inputs a name. 
+    
+#I.R: This line says that the variable player1_name initially does not have a value, as it will get filled when the user inputs a name. 
     player1_name = None
- #This loop will keep asking for a player name until a non-empty string is entered by the user.  
+    
+#I.R: This loop will keep asking for a player name until a non-empty string is entered by the user.  
     while not player1_name:
         player1_name = input("Please enter a valid name for first player: ").strip()
 
@@ -75,6 +77,7 @@ def get_player_names():
     while not player4_name:
         player4_name = input("Please enter a valid name for second player: ").strip()
 
+#I.R This line states that player one and two will be facing off against each other.
     print("\nMatch will be played between '" + player1_name + "' and '" + player2_name + "'\n")
      return player1_name, player2_name, player3_name, player4_name
 
@@ -82,6 +85,7 @@ def get_player_names():
 
 players_position = []
 
+#I.R: The dice roll
 player_turn  = random.randint(1,6)
 if player_turn = 6:
     
