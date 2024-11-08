@@ -1,7 +1,11 @@
 #hi uwu
+#NT: to be used for the dice roll
 import random
-#NT: defining where the snakes and ladder are on, and where they will take the players afterwards
 
+#NT: defining how many spaces there are available for the game
+board_size=100
+
+#NT: defining where the snakes and ladder are on, and where they will take the players afterwards
 #I.R: snakes = {
     8: 4,
     18: 1,
