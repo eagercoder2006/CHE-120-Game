@@ -100,8 +100,14 @@ def check_for_a_winner(player_name, position):
 def moving_positions(current_value, dice_roll):
     old_value = current_value
     current_value += dice_roll
+
+    if current_value > board_size:
+        print ("You must roll the exact number of spaces in order to win.")
+        return old_value
+
+
 #I.R: This tells the player whether to move up or down depending on if they landed on a snake or on a ladder.
-    if position in snakes:
+    if current_value in snakes:
         print(f"{player} encountered {'a ladder' if position < board[position] else 'a snake'}!")
       
         
