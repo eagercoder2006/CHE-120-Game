@@ -81,8 +81,8 @@ def get_player_names():
         player4_name = input("Please enter a valid name for second player: ").strip()
 
 #I.R This line will return the four inputed player names that have been inputed by the user.
-    print("\nMatch will be played between '" + player1_name + "' and '" + player2_name + "' and '" + player3_name + "' and '" + player4_name\n")
-     return player1_name, player2_name, player3_name, player4_name
+    print("\nMatch will be played between '" + player1_name + "' and '" + player2_name + "' and '" + player3_name + "' and '" + player4_name + "'\n")
+    return player1_name, player2_name, player3_name, player4_name
 
 
 
