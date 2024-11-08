@@ -91,5 +91,7 @@ def player_turn():
     print ("You got a " + str(dice_roll))
     return dice_roll
     
-player_position+= player_turn
+def check_for_a_winner(player_name, position):
+    if position== board_size:
+        print ("Hooray!" + str (player_name) + "  has won the game!")
 
