@@ -6,7 +6,7 @@ import turtle
 board_size=100
 
 #NT: defining where the snakes and ladder are on, and where they will take the players afterwards
-#I.R: snakes = {
+snakes = {
     8: 4,
     18: 1,
     26: 10,
