@@ -100,3 +100,12 @@ def check_for_a_winner(player_name, position):
     if position== board_size:
         print ("Hooray!" + str (player_name) + "  has won the game!")
 
+
+def start_game():
+    welcome_msg()
+    player1_name, player2_name,player3_name,player4_name = get_player_names()
+
+    player1_current_position = 0
+    player2_current_position = 0
+    player3_current_position = 0
+    player4_current_position = 0
