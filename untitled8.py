@@ -96,6 +96,9 @@ def player_turn():
 def check_for_a_winner(player_name, position):
     if position== board_size:
         print ("Hooray!" + str (player_name) + "  has won the game!")
+        return True
+    else:
+        return False
 
 def moving_positions(current_value, dice_roll):
     old_value = current_value
@@ -122,15 +125,25 @@ def moving_positions(current_value, dice_roll):
     if current_value in snakes:
         print(f"{player} encountered {'a ladder' if position < board[position] else 'a snake'}!")
       
-        
-def start_game():
-    welcome_msg()
-    player1_name, player2_name,player3_name,player4_name = get_player_names()
+#MAIN BODY OF CODE        
+welcome_msg()
+player1_name, player2_name,player3_name,player4_name = get_player_names()
 
-    player1_current_position = 0
-    player2_current_position = 0
-    player3_current_position = 0
-    player4_current_position = 0
+current_positions = [0, 0, 0, 0]
+flag = False #Keeps track of whether someone has won yet
+dice_value = 0
+
+while not flag:
+    for i in range(4):
+        dice_value = player_turn() #Rolls the dice
+        current_positions[i] = moving_positions(current_positions[i], dice_value) #Updates current position according to dice rolled
+        if check_for_a_winner(, current_positions[i]: #checks if someone won
+            flag = True
+            break
+        
+        
+    
+    
 
 
 import turtle
