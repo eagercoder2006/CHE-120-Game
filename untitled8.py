@@ -1,4 +1,4 @@
-#Israelle Azilinon:
+#Israelle Azilinon:IA
 #Ishita Rajan: I.R
 #Nicole Trinidad: NT
 #Amy Wang: 
