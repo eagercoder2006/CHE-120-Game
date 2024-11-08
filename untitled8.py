@@ -1,7 +1,7 @@
 #hi uwu
 #NT: to be used for the dice roll
 import random
-
+import graphics
 #NT: defining how many spaces there are available for the game
 board_size=100
 
