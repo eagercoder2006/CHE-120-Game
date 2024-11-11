@@ -72,16 +72,23 @@ def get_player_names():
     while not player2_name:
         player2_name = input("Please enter a valid name for second player: ").strip()
         
-    player3_name = None
-    while not player3_name:
-        player3_name = input("Please enter a valid name for second player: ").strip()
-    
-    player4_name = None
-    while not player4_name:
-        player4_name = input("Please enter a valid name for second player: ").strip()
+ #NT: to make player 3 optional   
+    player3_name = input("Please enter a valid name for third player: ").strip()
+    if not player3_name:
+         player3_name = None
+         
+   #NT: to make player 4 optional
+    player4_name = input("Please enter a valid name for fourth player: ").strip()
+    if not player4_name:
+        player4_name= None
 
 #I.R This line will return the four inputed player names that have been inputed by the user.
-    print("\nMatch will be played between '" + player1_name + "' and '" + player2_name + "' and '" + player3_name + "' and '" + player4_name + "'\n")
+    print("\nMatch will be played between '" + player1_name + "' and '" + player2_name)
+    if player3_name:
+        print(" and" + player3_name)
+    if player4_name:
+        print (" and" + player4_name)
+    print("\n")
     return player1_name, player2_name, player3_name, player4_name
 
 
@@ -105,15 +112,17 @@ def moving_positions(current_value, dice_roll):
     current_value += dice_roll
 
     if current_value > board_size:
-        print ("You must roll the exact number of spaces in order to win.")
+        print ("You must move exactly" + str (board_size - old_value) + " of spaces in order to win.")
         return old_value
 
     if current_value in snakes:
         final_position= snakes.get(current_value) 
+        print(random.choice(snake_bite_text))
 #NT: this line and the one below retrieve the position the corresponding snake/ladder is supposed to take the player to
 
     elif current_value in ladders:
         final_position=ladders.get(current_value)
+        print(random.choice(ladder_jump))
 
     else:
         final_position=current_value
@@ -122,25 +131,30 @@ def moving_positions(current_value, dice_roll):
 
 
 #I.R: This tells the player whether to move up or down depending on if they landed on a snake or on a ladder.
-    if current_value in snakes:
-        print(f"{player} encountered {'a ladder' if position < board[position] else 'a snake'}!")
+    #if current_value in snakes:
+        #print(f"{player} encountered {'a ladder' if position < board[position] else 'a snake'}!")
       
 #MAIN BODY OF CODE        
 welcome_msg()
 player1_name, player2_name,player3_name,player4_name = get_player_names()
 
 current_positions = [0, 0, 0, 0]
+players=[player1_name, player2_name, player3_name, player4_name]
 flag = False #Keeps track of whether someone has won yet
 dice_value = 0
 
 while not flag:
     for i in range(4):
+        if players[i]is None:
+            continue
+        
+        input('\n' + players[i] + ":" + random.choice(player_turn_text))
+            
         dice_value = player_turn() #Rolls the dice
         current_positions[i] = moving_positions(current_positions[i], dice_value) #Updates current position according to dice rolled
-        if check_for_a_winner(, current_positions[i]: #checks if someone won
+        if check_for_a_winner(players[i], current_positions[i]): #checks if someone won
             flag = True
             break
-        
         
     
     
