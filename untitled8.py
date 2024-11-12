@@ -5,11 +5,11 @@
 
 #NT: to be used for the dice roll
 import random
-import turtle
 #NT: defining how many spaces there are available for the game
 board_size=100
 
-#NT: defining where the snakes and ladder are on, and where they will take the players afterwards
+#NT:defines a dictionary where, the keys represent the starting positions of snakes/ladders
+#NT:and the values represent the ending positions after sliding down the snake or climbing a ladder.
 snakes = {
     8: 4,
     18: 1,
@@ -35,7 +35,8 @@ ladders = {
   80: 93,
   83: 95
 }
-#NT: simple print statements that will be used to make the game more interactive
+#NT: simple print statements that will be used to make the game more interactive, these will be randomly printed at
+#NT: the beginning of each turn, or when a player encounters a snake or ladder
 player_turn_text= [ "It's your turn.", "MOVE!", "Please proceed.", "You ready to win this?", "Let's Go!"]
 snake_bite_text= ["Ouch!", "whomp whomp", "oh no", "did that hurt?", "Slide you later!"]
 ladder_jump= ["Woop woop", "YAY", "Climb up!", "You're closer to the end"]
@@ -74,88 +75,130 @@ def get_player_names():
         
  #NT: to make player 3 optional   
     player3_name = input("Please enter a valid name for third player: ").strip()
+ #NT:the str.strip() is used to remove any excess whitespace infront or behind the user's input
     if not player3_name:
+#NT: this checks whether the player3_name is an empty string or a None value
+#NT: if the name is empty, meaning no input was provided, the condition will return True
          player3_name = None
          
-   #NT: to make player 4 optional
+#NT: to make player 4 optional, exact logic was used for player4_name that was used in player3_name
     player4_name = input("Please enter a valid name for fourth player: ").strip()
     if not player4_name:
         player4_name= None
 
 #I.R This line will return the four inputed player names that have been inputed by the user.
     print("\nMatch will be played between '" + player1_name + "' and '" + player2_name)
-    if player3_name:
+    if player3_name: 
+#NT: checks is player3_name is not None, and if true, it will print the player's name as part of the match condition
         print(" and" + player3_name)
-    if player4_name:
+    if player4_name: #NT: same logic as above
         print (" and" + player4_name)
     print("\n")
     return player1_name, player2_name, player3_name, player4_name
 
-
 #I.R: The dice roll
 def player_turn():
     dice_roll= random.randint(1,6)
+#NT: python's random module to generate a random integer, and the arguments specify that the random
+#NT: number should be between 1 and 6 (inclusive)
     print ("You got a " + str(dice_roll))
     return dice_roll
+#NT: allows us to use this value in other parts of the program, like updating a player's position in the game
 
 #NT: this checks whether a player has reached the end of the game, and since the max player position can be the size of the board
 #NT: this is why we set the position equal to the board size
 def check_for_a_winner(player_name, position):
     if position== board_size:
-        print ("Hooray!" + str (player_name) + "  has won the game!")
+        print ("Hooray! " + str (player_name) + "  has won the game!")
         return True
+#NT: this indicates that a winner has been found, and will be used by other parts of the program
+#NT: to stop the game or anything additional to be added
     else:
         return False
+#NT: if a player has not won, this will tell the program to continue the game
 
 def moving_positions(current_value, dice_roll):
     old_value = current_value
+#NT: stores the player's current position (current_value) in the variable old_value to be later used to
+#NT: calculate how many spaces the player has moved and show an error if the player has exceeded the board size
     current_value += dice_roll
+#NT: this is what updates the player's position by adding the dice_roll to the current_value
+#NT: and the new current_value represents the player's new position after their turn
 
     if current_value > board_size:
-        print ("You must move exactly" + str (board_size - old_value) + " of spaces in order to win.")
+#NT: this checks if the player's new position exceeds the total number of spaces on the baord
+        print ("You must move exactly " + str (board_size - old_value) + " of spaces in order to win.")
         return old_value
+#NT: if this is true, the player if returned to their original position, since in our rules, it must be an exact roll to win
+
 
     if current_value in snakes:
+#NT: checks if the player' new position corresponds to a snake's head (checks is current_value is in snakes dictionary)
         final_position= snakes.get(current_value) 
+#NT: the function retrieves the final position from the dictionary using snakes.get(current_value), providing the position the snake takes the player
         print(random.choice(snake_bite_text))
-#NT: this line and the one below retrieve the position the corresponding snake/ladder is supposed to take the player to
+#NT: this randomizes the texts that will be shown to alert player about the snake they landed on
 
     elif current_value in ladders:
         final_position=ladders.get(current_value)
         print(random.choice(ladder_jump))
+#NT: this also uses the same logic as the if statement for snakes above, but uses the ladder dictionary and other functions related to ladders rather than snakes
 
     else:
         final_position=current_value
-
+#NT: if the player's new position is neither a snake nor a ladder, the final position is simply the current position, and no special event occurs
+        print(str(board_size-final_position) + " more spaces to go!")
     return final_position
+#NT: returns the player's final position
 
 
-#I.R: This tells the player whether to move up or down depending on if they landed on a snake or on a ladder.
-    #if current_value in snakes:
-        #print(f"{player} encountered {'a ladder' if position < board[position] else 'a snake'}!")
-      
-#MAIN BODY OF CODE        
-welcome_msg()
-player1_name, player2_name,player3_name,player4_name = get_player_names()
+def playAgain():
+    # This function returns True if the player wants to play again; otherwise, it returns False.
+    print('Do you want to play again? (yes or no)')
+    return input().lower().startswith('y')
+#NT: prompts user whether they want to play again, and checks the input for yes, or even just y, where if its one of these options it will return True
 
-current_positions = [0, 0, 0, 0]
-players=[player1_name, player2_name, player3_name, player4_name]
-flag = False #Keeps track of whether someone has won yet
-dice_value = 0
 
-while not flag:
-    for i in range(4):
-        if players[i]is None:
-            continue
+#MAIN BODY OF CODE  
+def start_game():      
+    welcome_msg()
+    player1_name, player2_name,player3_name,player4_name = get_player_names()
+
+    current_positions = [0, 0, 0, 0]
+#NT: the stores the current positions of all players on the board, and are initially set to 0
+    players=[player1_name, player2_name, player3_name, player4_name]
+#NT: stores the player names
+    flag = False #Keeps track of whether the game has ended, and is initially set to False, meaning there is no winner
+    dice_value = 0
+#NT: a variable to store the dice value rolled by the players, will be updates after each player's turn
+
+#NT: main game loop
+    while not flag:
+#NT: this loop will iterates over each player allowing each player to take a turn in order
+        for i in range(4):
+            if players[i]is None:
+#NT: checks is a player's name is None, and if true, this player will be skipped 
+                continue
+            if players[i]:
+                input('\n' + players[i] + ":" + random.choice(player_turn_text) + " Hit enter to start your turn")
+#NT: prompts current players with a random text to alert them of their turn  
+#NT: the input function waits for the player to hit enter to start their turn         
+                dice_value = player_turn() #Rolls the dice
+                current_positions[i] = moving_positions(current_positions[i], dice_value) #Updates current position according to dice rolled
+                if check_for_a_winner(players[i], current_positions[i]): #checks if someone won
+                    flag = True
+#NT: if a winner is found, flag returns true and will break out of the loop and end the game
+                    break
+    
+        if flag:
+#NT: checks whther the user wants to play again using playAgain(), if player says no, it will exit the game
+            if playAgain():
+                start_game()
         
-        input('\n' + players[i] + ":" + random.choice(player_turn_text))
-            
-        dice_value = player_turn() #Rolls the dice
-        current_positions[i] = moving_positions(current_positions[i], dice_value) #Updates current position according to dice rolled
-        if check_for_a_winner(players[i], current_positions[i]): #checks if someone won
-            flag = True
-            break
-        
+   
+#NT: function contains the entire game loop, and calls upon itself recursively if another round will be played, and ensures that the
+#NT: next round restarts with cleared data from the last game 
+start_game()
     
     
 
