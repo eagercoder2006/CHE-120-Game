@@ -43,7 +43,7 @@ paths.append((y, x))
 current = 0
 while x > 1 and y > 1:
     direction = random.randint(0,10)
-    #AW: This random generation strongly favours changing direction (if generated int is from 1-10, change direction, if 0, keep the same direction) in order to improve the odds of creating a diagonal that actually reaches the other corner
+    #AW: This random generation strongly favours changing direction (if generated int is from 1-10, change direction, if 0, keep the same direction), in order to improve the odds of creating a diagonal that actually reaches the other corner
     if direction >= 2:
         direction = abs(current - 1)
     if direction == 0 and y > 2: #NORTH
