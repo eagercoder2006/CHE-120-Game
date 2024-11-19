@@ -30,7 +30,7 @@ def welcome_msg():
     Welcome to Snake and Ladder Game.
 
     Rules:
-      1. Initally both the players are at starting position i.e. 0. 
+      1. Initally 2-4 players are at starting position i.e. 0. 
          Take it in turns to roll the dice. 
          Move forward the number of spaces shown on the dice.
       2. If you lands at the bottom of a ladder, you can move up to the top of the ladder.
