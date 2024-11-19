@@ -7,35 +7,17 @@
 import random
 import turtle
 #NT: defining how many spaces there are available for the game
-board_size=100
+board_size=input("how large do you want the board game to be? This input must be an odd number and max:35 tiles")
+if type(board_size) != int:
+    print ("Error:this input must be a number")
+    return None
+elif board_size > 35:
+    print ("Error: the is number is out of range, choose a smaller number")
+    return None
+elif board_size%2 !=0:
+    print ("Error: number must be odd")
+    return None
 
-#NT:defines a dictionary where, the keys represent the starting positions of snakes/ladders
-#NT:and the values represent the ending positions after sliding down the snake or climbing a ladder.
-snakes = {
-    8: 4,
-    18: 1,
-    26: 10,
-    39: 5,
-    51: 6,
-    54: 36,
-    56: 1,
-    60: 23,
-    75: 28,
-    85: 59,
-    90: 48,
-    99: 63
-}
-
-ladders = {
-  1: 38,
-  8: 30,
-  21: 42,
-  28: 76,
-  50: 67,
-  71: 92,
-  80: 93,
-  83: 95
-}
 #NT: simple print statements that will be used to make the game more interactive, these will be randomly printed at
 #NT: the beginning of each turn, or when a player encounters a snake or ladder
 player_turn_text= [ "It's your turn.", "MOVE!", "Please proceed.", "You ready to win this?", "Let's Go!"]
