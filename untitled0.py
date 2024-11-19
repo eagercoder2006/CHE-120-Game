@@ -91,7 +91,7 @@ def player_turn():
 #NT: this checks whether a player has reached the end of the game, and since the max player position can be the size of the board
 #NT: this is why we set the position equal to the board size
 def check_for_a_winner(player_name, position):
-    if position== board_size:
+    if position == (0,1):
         print ("Hooray! " + str (player_name) + "  has won the game!")
         return True
 #NT: this indicates that a winner has been found, and will be used by other parts of the program
