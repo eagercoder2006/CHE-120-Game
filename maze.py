@@ -22,7 +22,7 @@ def validMoveExists(currentTile):
     return valid
 
 #AW: Creates the maze and fills all tiles with walls initially
-maze = []
+maze = []d
 mazeSize = 25
 #fill all spots with walls first
 for i in range(mazeSize):
@@ -133,9 +133,6 @@ for i in range(len(paths) // 45):
         end = random.randint(0, len(paths) - 1)
     #AW: Add the ladder key (start pos) and value (end pos) to the ladders dictionary
     ladders[paths[start]] = paths[end]
-    #REMOVE FROM FINAL CODE. THIS IS JUST FOR TESTING
-    maze[paths[start][0]][paths[start][1]] = chr(i+65)
-    maze[paths[end][0]][paths[end][1]] = chr(i+65)
 #print(ladders)
 #print()
 
@@ -150,13 +147,10 @@ for i in range(len(paths) // 45):
         end = random.randint(0, len(paths) - 1)
     #AW: Add the snake key and value to the snakes dictionary
     snakes[paths[start]] = paths[end]
-    #REMOVE FROM FINAL CODE, ONLY FOR TESTING
-    maze[paths[start][0]][paths[start][1]] = chr(i+97)
-    maze[paths[end][0]][paths[end][1]] = chr(i+97)
 
 #print(snakes)
 #show the board, ONLY FOR TESTING.
-for i in range(mazeSize):
-    for j in range(mazeSize):
-        print(maze[i][j], end="")
-    print()
+#for i in range(mazeSize):
+    #for j in range(mazeSize):
+        #print(maze[i][j], end="")
+    #print()
