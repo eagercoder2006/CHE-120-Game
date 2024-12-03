@@ -144,7 +144,6 @@ def showMaze(maze, currentPos, positions):
 
     #AW: This adds the players as numbers (1 for player 1, 2 for player 2, etc) to the board based on their positions
     for i in range(len(positions) - 1, -1, -1):
-        print(i)
         maze[positions[i][0]][positions[i][1]] = str(i + 1)
 
     #AW: This prints the entire maze out, tile by tile
