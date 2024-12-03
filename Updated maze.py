@@ -1,3 +1,4 @@
+
 import random
 
 #NT: simple print statements that will be used to make the game more interactive, these will be randomly printed at
@@ -12,13 +13,13 @@ def welcome_msg():
     Welcome to Snake and Ladder Game.
 
     Rules:
-      1. Initally both the players are at starting position i.e. 0. 
-         Take it in turns to roll the dice. 
-         Move forward the number of spaces shown on the dice.
-      2. If you lands at the bottom of a ladder, you can move up to the top of the ladder.
-      3. If you lands on the head of a snake, you must slide down to the bottom of the snake.
-      4. The first player to get to the FINAL position is the winner.
-      5. Hit enter to roll the dice.
+      1. Determine the number of players and enter a name for each player. 
+      2. The first player rolls the dice by hitting the enter key, and then decides how they would like to move. Moving backwards is not allowed, expect when you reach a dead end of the maze.
+      3. If a player lands at the bottom of a ladder, they will advance to the square that is at the top of the ladder. If a player lands on the head of a snake, they must slide down to the square at the bottom of the snake. 
+      4. Example: If a player rolls a five, they can advance two squares north and move three squares left.
+      5. If a player hits a dead end while playing their turn, their turn is over.
+      6. The first player to reach the end of the maze wins the game.
+
     """
     print(msg)
 
@@ -307,10 +308,7 @@ while not gameEnd:
         maze[currentPos[0]][currentPos[1]] = str(num + 1)
         #AW: The board is shown
         showMaze(maze, currentPos, positions)
-
-        #AW: Prevents players from going back to the (already visited) starting tile on their first move
-        if firstMove:
-            visited.append((mazeSize - 2, mazeSize - 2)) 
+        visited.append(positions[num])
         
         print(players[num] + ", it's your turn. " + str(random.choice(player_turn_text)))
         #AW: The dice is rolled, determining how many moves the player can make
@@ -319,7 +317,7 @@ while not gameEnd:
         for i in range(diceRoll):
             move = input("Please enter a direction to move. You can enter either N, S, E or W (case of input does not matter): ")
             #AW: If the input direction is invalid, the user is prompted to enter a direction again
-            while not validMove(move, currentPos, visited):
+            while not validMove(move, currentPos, visited) and not atDeadEnd(currentPos, visited):
                 move = input("Please enter a direction to move. You can enter either N, S, E or W (case of input does not matter): ")
             #AW: If the player is at a dead end (all surrounding tiles are either walls or already visited), the player's remaining moves are forfeited
             if atDeadEnd(currentPos, visited):
@@ -340,7 +338,6 @@ while not gameEnd:
                 maze[currentPos[0]][currentPos[1]] = " "
                 currentPos = (currentPos[0], currentPos[1] + 1)
             visited.append(currentPos)
-            positions[num] = currentPos
 
             #AW: If the played landed on the head of a snake or ladder, their position is adjusted accordingly
             if currentPos in ladders:
@@ -359,6 +356,9 @@ while not gameEnd:
             gameEnd = check_for_a_winner(players[num], currentPos)
             if gameEnd:
                 break
+            
+        if gameEnd:
+            break
             
         visited.clear()
         positions[num] = currentPos
